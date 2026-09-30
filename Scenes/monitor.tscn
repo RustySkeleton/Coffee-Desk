@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://mt081t7m7byv"]
+
+[ext_resource type="PackedScene" uid="uid://ce5x8yny3auq5" path="res://Assets/Monitor/Monitor.glb" id="1_xs8qi"]
+[ext_resource type="VideoStream" uid="uid://m8a6jwyxda82" path="res://Assets/Monitor/output.ogv" id="2_drif0"]
+[ext_resource type="Script" uid="uid://dal60u01yv2cv" path="res://Scenes/monitor.gd" id="2_orglu"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p2uwp"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orglu"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_p2uwp")
+albedo_texture_force_srgb = true
+
+[node name="Monitor" unique_id=1533482237 instance=ExtResource("1_xs8qi")]
+script = ExtResource("2_orglu")
+
+[node name="screen" parent="." index="5" unique_id=843105621]
+material_override = SubResource("StandardMaterial3D_orglu")
+
+[node name="SubViewport" type="SubViewport" parent="." index="7" unique_id=860209285]
+size = Vector2i(1920, 1080)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="SubViewport" index="0" unique_id=1877608262]
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("2_drif0")
+speed_scale = 10.0
+autoplay = true
+paused = true
+loop = true

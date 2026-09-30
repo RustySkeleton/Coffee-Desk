@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cj7pcr7qjt21a"]
+
+[ext_resource type="PackedScene" uid="uid://58v2s35yeojb" path="res://Assets/Mouse/Mouse.glb" id="1_dev0r"]
+[ext_resource type="Script" uid="uid://dyxatryqpgtvx" path="res://Scripts/mouse.gd" id="2_3ber4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dev0r"]
+size = Vector3(0.03878093, 0.020303436, 0.06700134)
+
+[node name="Mouse" unique_id=1303800948 instance=ExtResource("1_dev0r")]
+script = ExtResource("2_3ber4")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=862107126]
+speed_scale = 3.0
+
+[node name="Area3D" type="Area3D" parent="." index="2" unique_id=1994670418]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1023847421]
+transform = Transform3D(1.4238695, 0, 0, 0, 1.4238695, 0, 0, 0, 1.4238695, 0.55425996, 0.85845476, 0.1332515)
+shape = SubResource("BoxShape3D_dev0r")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_mouse_input_event"]

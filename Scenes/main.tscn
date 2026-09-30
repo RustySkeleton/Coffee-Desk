@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bsltc4rtnw5oc"]
+
+[ext_resource type="Script" uid="uid://cy7k3dkw36g1r" path="res://Scripts/main.gd" id="1_21xkr"]
+[ext_resource type="PackedScene" uid="uid://tfxxb5u5f1yn" path="res://Scenes/keyboard.tscn" id="1_kry3j"]
+[ext_resource type="PackedScene" uid="uid://mt081t7m7byv" path="res://Scenes/monitor.tscn" id="2_21xkr"]
+[ext_resource type="PackedScene" uid="uid://cj7pcr7qjt21a" path="res://Scenes/mouse.tscn" id="3_6bp64"]
+[ext_resource type="PackedScene" uid="uid://cfdyuudav1aeh" path="res://Scenes/mug.tscn" id="4_344ge"]
+[ext_resource type="PackedScene" uid="uid://r1ktqufqlbc3" path="res://Scenes/table.tscn" id="5_ynf5e"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kry3j"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_21xkr"]
+sky_material = SubResource("ProceduralSkyMaterial_kry3j")
+
+[sub_resource type="Environment" id="Environment_6bp64"]
+background_mode = 2
+sky = SubResource("Sky_21xkr")
+glow_enabled = true
+
+[node name="Main" type="Node3D" unique_id=147545468]
+script = ExtResource("1_21xkr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1128438875]
+environment = SubResource("Environment_6bp64")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=251235498]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Monitor" parent="." unique_id=1533482237 instance=ExtResource("2_21xkr")]
+
+[node name="Mouse" parent="." unique_id=1303800948 instance=ExtResource("3_6bp64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07007134)
+
+[node name="Mug" parent="." unique_id=1403368338 instance=ExtResource("4_344ge")]
+
+[node name="Table" parent="." unique_id=87495539 instance=ExtResource("5_ynf5e")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=696039675]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0.15, 1.235, 0.78)
+current = true
+fov = 50.0
+
+[node name="Keyboard" parent="." unique_id=1187240259 instance=ExtResource("1_kry3j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07619774)

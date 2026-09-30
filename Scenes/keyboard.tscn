@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://tfxxb5u5f1yn"]
+
+[ext_resource type="PackedScene" uid="uid://c6f8g4rnmpy7e" path="res://Assets/Keyboard/Keyboard.glb" id="1_afman"]
+[ext_resource type="Script" uid="uid://lf555igbab4p" path="res://Scripts/keyboard.gd" id="2_rgdnh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rgdnh"]
+size = Vector3(0.37475044, 0.021843923, 0.12175281)
+
+[node name="Keyboard" unique_id=1187240259 instance=ExtResource("1_afman")]
+script = ExtResource("2_rgdnh")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=574226521]
+speed_scale = 2.5
+
+[node name="Area3D" type="Area3D" parent="." index="2" unique_id=200095239]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=178819395]
+transform = Transform3D(1.4238695, 0, 0, 0, 1.4238695, 0, 0, 0, 1.4238695, 0.18688172, 0.85955155, 0.13297139)
+shape = SubResource("BoxShape3D_rgdnh")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_keyboard_input_event"]
