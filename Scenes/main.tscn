@@ -2,10 +2,20 @@
 
 [ext_resource type="Script" uid="uid://cy7k3dkw36g1r" path="res://Scripts/main.gd" id="1_21xkr"]
 [ext_resource type="PackedScene" uid="uid://tfxxb5u5f1yn" path="res://Scenes/keyboard.tscn" id="1_kry3j"]
+[ext_resource type="PackedScene" uid="uid://053nvxmd4x7" path="res://Scenes/sticky_not.tscn" id="2_6bp64"]
 [ext_resource type="PackedScene" uid="uid://mt081t7m7byv" path="res://Scenes/monitor.tscn" id="2_21xkr"]
+[ext_resource type="PackedScene" uid="uid://c4lumrbssvi2m" path="res://Scenes/sticky_rules.tscn" id="2_344ge"]
 [ext_resource type="PackedScene" uid="uid://cj7pcr7qjt21a" path="res://Scenes/mouse.tscn" id="3_6bp64"]
 [ext_resource type="PackedScene" uid="uid://cfdyuudav1aeh" path="res://Scenes/mug.tscn" id="4_344ge"]
 [ext_resource type="PackedScene" uid="uid://r1ktqufqlbc3" path="res://Scenes/table.tscn" id="5_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://v3mqliwqy5yw" path="res://Scenes/vase.tscn" id="9_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://dkyupobhfhf6b" path="res://Scenes/clock.tscn" id="10_hptm8"]
+[ext_resource type="PackedScene" uid="uid://ya1ytxbxq15u" path="res://Scenes/eye.tscn" id="11_d1ilt"]
+[ext_resource type="PackedScene" uid="uid://ctlghxce7xbge" path="res://Scenes/script.tscn" id="12_6iyac"]
+[ext_resource type="AudioStream" uid="uid://cyd6d6lfca51k" path="res://Assets/Miscellaneous/wooden footsteps.mp3" id="13_fdnlq"]
+[ext_resource type="AudioStream" uid="uid://c6rcji8yy1nsk" path="res://Assets/Miscellaneous/horror jumpscare.mp3" id="13_jkdf5"]
+[ext_resource type="Script" uid="uid://cnnns768pv3mn" path="res://Scripts/health_bar.gd" id="15_k12tt"]
+[ext_resource type="Script" uid="uid://b8gny5mg31kuk" path="res://Scenes/Work_Bar.gd" id="16_h1bgf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kry3j"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -15,19 +25,28 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_kry3j")
 
 [sub_resource type="Environment" id="Environment_6bp64"]
-background_mode = 2
+background_mode = 1
+background_energy_multiplier = 0.1
 sky = SubResource("Sky_21xkr")
 glow_enabled = true
+glow_bloom = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k12tt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1bgf"]
+bg_color = Color(0.36476776, 0.6871313, 0.37322727, 1)
 
 [node name="Main" type="Node3D" unique_id=147545468]
 script = ExtResource("1_21xkr")
+appearance = Array[int]([35, 96, 144, 210, 279])
+
+[node name="Sticky Rules" parent="." unique_id=1513867889 instance=ExtResource("2_344ge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.020874798)
+
+[node name="Sticky Not" parent="." unique_id=471799019 instance=ExtResource("2_6bp64")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1128438875]
 environment = SubResource("Environment_6bp64")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=251235498]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Monitor" parent="." unique_id=1533482237 instance=ExtResource("2_21xkr")]
 
@@ -36,8 +55,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07007134)
 
 [node name="Mug" parent="." unique_id=1403368338 instance=ExtResource("4_344ge")]
 
-[node name="Table" parent="." unique_id=87495539 instance=ExtResource("5_ynf5e")]
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=696039675]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0.15, 1.235, 0.78)
 current = true
@@ -45,3 +62,77 @@ fov = 50.0
 
 [node name="Keyboard" parent="." unique_id=1187240259 instance=ExtResource("1_kry3j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07619774)
+
+[node name="Table" parent="." unique_id=340299523 instance=ExtResource("5_ynf5e")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=955362166]
+transform = Transform3D(0.99904823, 0.037775498, -0.021809692, 0, 0.49999997, 0.86602545, 0.043619387, -0.8652012, 0.4995241, 0, 4, 2.5)
+light_color = Color(0.83137256, 1, 0.9098039, 1)
+light_energy = 7.0
+light_indirect_energy = 5.0
+shadow_enabled = true
+spot_range = 4.346217
+spot_angle = 16.471004
+
+[node name="Vase" parent="." unique_id=1259258605 instance=ExtResource("9_ynf5e")]
+
+[node name="Clock" parent="." unique_id=370879867 instance=ExtResource("10_hptm8")]
+
+[node name="Eye2" parent="." unique_id=1250363207 instance=ExtResource("11_d1ilt")]
+
+[node name="Scripts" parent="." unique_id=920674936 instance=ExtResource("12_6iyac")]
+visible = false
+
+[node name="Scripts2" parent="." unique_id=183502027 instance=ExtResource("12_6iyac")]
+visible = false
+say = Array[String](["I Am Watching You!"])
+
+[node name="Stinger" type="AudioStreamPlayer3D" parent="." unique_id=121158298]
+stream = ExtResource("13_jkdf5")
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="." unique_id=621470540]
+stream = ExtResource("13_fdnlq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=18091303]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=951477767]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = 92.15997
+offset_right = 550.0
+offset_bottom = 119.15997
+grow_vertical = 2
+rotation = -1.5707964
+theme_override_styles/background = SubResource("StyleBoxEmpty_k12tt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h1bgf")
+script = ExtResource("15_k12tt")
+
+[node name="Label" type="Label" parent="CanvasLayer/HealthBar" unique_id=147096397]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Awake"
+
+[node name="WorkBar" type="ProgressBar" parent="CanvasLayer" unique_id=1745243269]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = 84.0
+offset_right = 446.0
+offset_bottom = 111.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -1.5707964
+script = ExtResource("16_h1bgf")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/WorkBar" unique_id=294365204]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Work"

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dkyupobhfhf6b"]
+
+[ext_resource type="PackedScene" uid="uid://dwwnbg36ly85x" path="res://Assets/Miscellaneous/Clock.glb" id="1_s7hhp"]
+[ext_resource type="Script" uid="uid://bs57ykeb2d84o" path="res://Scripts/clock.gd" id="2_pdqta"]
+[ext_resource type="FontFile" uid="uid://mt103nlhnkyj" path="res://Assets/Miscellaneous/DRAGRACE.TTF" id="3_ga67c"]
+[ext_resource type="AudioStream" uid="uid://cxclovecwsdem" path="res://Assets/Miscellaneous/clock_ticking.mp3" id="4_1ixnv"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0t2r4"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ac6rp"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3l88"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_0t2r4")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_ac6rp")
+
+[node name="Clock" unique_id=370879867 instance=ExtResource("1_s7hhp")]
+script = ExtResource("2_pdqta")
+
+[node name="Cube" parent="." index="0" unique_id=1589212494]
+surface_material_override/1 = SubResource("StandardMaterial3D_m3l88")
+
+[node name="SubViewport" type="SubViewport" parent="." index="1" unique_id=843166695]
+transparent_bg = true
+
+[node name="Label" type="Label" parent="SubViewport" index="0" unique_id=25802469]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -11.5
+offset_right = 21.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ga67c")
+theme_override_font_sizes/font_size = 96
+text = "00:00"
+
+[node name="tick" type="AudioStreamPlayer3D" parent="." index="2" unique_id=1464139356]
+stream = ExtResource("4_1ixnv")
+volume_db = -10.0

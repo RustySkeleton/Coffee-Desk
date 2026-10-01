@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://053nvxmd4x7"]
+
+[ext_resource type="PackedScene" uid="uid://cbswk15pjl3uk" path="res://Assets/Miscellaneous/Sticky Not.glb" id="1_fomna"]
+[ext_resource type="Script" uid="uid://c48mwk13qy7dv" path="res://Scripts/sticky_rules.gd" id="2_hhrle"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hhrle"]
+size = Vector3(0.07620001, 0.0109691415, 0.075653695)
+
+[sub_resource type="Animation" id="Animation_hduw8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StickyNote_002:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5900276, 1.1524636, -0.263399)]
+}
+
+[sub_resource type="Animation" id="Animation_hhrle"]
+resource_name = "Read"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StickyNote_002:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.5900276, 1.1524636, -0.263399), Vector3(0.15, 1.237, 0.682)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hduw8"]
+_data = {
+&"RESET": SubResource("Animation_hduw8"),
+&"Read": SubResource("Animation_hhrle")
+}
+
+[node name="Sticky Not" unique_id=471799019 node_paths=PackedStringArray("sticky_note", "animation_player") instance=ExtResource("1_fomna")]
+script = ExtResource("2_hhrle")
+sticky_note = NodePath("StickyNote_002")
+animation_player = NodePath("AnimationPlayer")
+animation = "Read"
+
+[node name="Area3D" type="Area3D" parent="StickyNote_002" parent_id_path=PackedInt32Array(1344669162) index="0" unique_id=1349882564]
+transform = Transform3D(0.9996837, -0.025149815, -2.998091e-09, -1.1360354e-09, -1.192184e-07, 0.9999999, -0.025149815, -0.99968356, -1.1917155e-07, -0.5608567, 0.26339912, 1.166938)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StickyNote_002/Area3D" index="0" unique_id=1273789730]
+transform = Transform3D(0.9996837, 0, -0.025149817, -0.025149817, -1.1920929e-07, -0.9996838, -1.8626451e-09, 1.0000001, -1.1920929e-07, 0.5892182, 1.1202915, -0.2578905)
+shape = SubResource("BoxShape3D_hhrle")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=2108191442]
+libraries/ = SubResource("AnimationLibrary_hduw8")
+
+[connection signal="input_event" from="StickyNote_002/Area3D" to="." method="_on_note_rule_input_event"]
