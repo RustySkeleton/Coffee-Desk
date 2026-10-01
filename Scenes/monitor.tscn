@@ -2,22 +2,25 @@
 
 [ext_resource type="PackedScene" uid="uid://ce5x8yny3auq5" path="res://Assets/Monitor/Monitor.glb" id="1_xs8qi"]
 [ext_resource type="VideoStream" uid="uid://m8a6jwyxda82" path="res://Assets/Monitor/output.ogv" id="2_drif0"]
-[ext_resource type="Script" uid="uid://dal60u01yv2cv" path="res://Scenes/monitor.gd" id="2_orglu"]
+[ext_resource type="Script" uid="uid://dal60u01yv2cv" path="res://Scripts/monitor.gd" id="2_orglu"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_p2uwp"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ffwe1"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orglu"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_hkxed"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2uwp"]
 resource_local_to_scene = true
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_p2uwp")
-albedo_texture_force_srgb = true
+albedo_texture = SubResource("ViewportTexture_ffwe1")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_hkxed")
 
 [node name="Monitor" unique_id=1533482237 instance=ExtResource("1_xs8qi")]
 script = ExtResource("2_orglu")
 
 [node name="screen" parent="." index="5" unique_id=843105621]
-material_override = SubResource("StandardMaterial3D_orglu")
+material_override = SubResource("StandardMaterial3D_p2uwp")
 
 [node name="SubViewport" type="SubViewport" parent="." index="7" unique_id=860209285]
 size = Vector2i(1920, 1080)

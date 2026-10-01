@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ctlghxce7xbge"]
+
+[ext_resource type="FontFile" uid="uid://8fngvli10jjc" path="res://Assets/Miscellaneous/WONDERLAND.OTF" id="1_lnbns"]
+[ext_resource type="Script" uid="uid://crxpmekpc30ww" path="res://Scripts/script.gd" id="2_00cs7"]
+
+[node name="Script" type="CanvasLayer" unique_id=920674936]
+script = ExtResource("2_00cs7")
+say = Array[String](["Your Shift Ends At 6:00", "Your Senior Must Have Left You A Note", "Start Working, I'll Be Watching You!"])
+
+[node name="Label" type="Label" parent="." unique_id=294665754]
+anchors_preset = -1
+anchor_left = 0.4997396
+anchor_right = 0.5002604
+anchor_bottom = 0.08888889
+offset_top = 60.0
+offset_bottom = 60.00003
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_lnbns")
+theme_override_font_sizes/font_size = 96
+max_lines_visible = 1
+metadata/_edit_use_anchors_ = true

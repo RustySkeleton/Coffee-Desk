@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://ya1ytxbxq15u"]
+
+[ext_resource type="PackedScene" uid="uid://dfdkwqstcwblc" path="res://Assets/Miscellaneous/Eye.glb" id="1_2dc3a"]
+[ext_resource type="Script" uid="uid://kiquoout3tmw" path="res://Scripts/eye.gd" id="2_dxrjs"]
+[ext_resource type="AudioStream" uid="uid://etapi40c7whr" path="res://Assets/Monitor/Whispers.wav" id="3_avcuq"]
+
+[node name="Eye2" unique_id=1250363207 instance=ExtResource("1_2dc3a")]
+script = ExtResource("2_dxrjs")
+
+[node name="Eye" parent="." index="0" unique_id=1116419006]
+transform = Transform3D(-9.2434e-09, 0, -0.21146435, 0, 0.21146435, 0, 0.21146435, 0, -9.2434e-09, -0.261404, 1.2434394, -0.22264731)
+
+[node name="Skeleton3D" parent="Eye" index="1" unique_id=1702659298]
+bones/0/rotation = Quaternion(0.57746094, 0.40783185, 0.5787026, -0.40659004)
+bones/1/rotation = Quaternion(0.0062414156, -7.2761e-12, 4.5359255e-05, 0.9999805)
+bones/2/rotation = Quaternion(0.18392864, 2.9609e-11, 0.0013366928, 0.9829387)
+bones/3/rotation = Quaternion(0.32810733, 3.0809525e-11, 0.0023845045, 0.9446375)
+bones/4/rotation = Quaternion(0.35832405, 3.117398e-11, 0.0026041034, 0.93359363)
+bones/5/rotation = Quaternion(0.2670303, 4.832084e-10, 0.0019406307, 0.9636862)
+bones/7/position = Vector3(-2.846402, 2.1262443, -0.015452411)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Eye/Skeleton3D" index="0" unique_id=173726949]
+transform = Transform3D(0, 0.99999994, 0, 0, 0, 1, 0.99999994, 0, 0, -2.846402, 2.1262443, -0.015452411)
+bone_name = "Bone.007"
+bone_idx = 7
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Eye/Skeleton3D/BoneAttachment3D" index="0" unique_id=1760243856]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, -5.394354e-23, 4.371139e-08, 1, -4.371139e-08, 0, 0.32951975, 0)
+light_color = Color(1, 0.22332633, 0.1761989, 1)
+light_energy = 0.0
+omni_range = 0.09551513
+
+[node name="Timer" type="Timer" parent="." index="2" unique_id=928151982]
+wait_time = 10.0
+one_shot = true
+
+[node name="Whispers" type="AudioStreamPlayer3D" parent="." index="3" unique_id=1288135614]
+stream = ExtResource("3_avcuq")
+
+[connection signal="timeout" from="Timer" to="." method="eye_go"]

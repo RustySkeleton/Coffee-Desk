@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://v3mqliwqy5yw"]
+
+[ext_resource type="PackedScene" uid="uid://cb5qsc55b7ymx" path="res://Assets/Miscellaneous/Vase.glb" id="1_m8en8"]
+
+[node name="Vase" unique_id=1259258605 instance=ExtResource("1_m8en8")]
