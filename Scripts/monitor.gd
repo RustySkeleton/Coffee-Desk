@@ -1,5 +1,6 @@
 extends Node3D
 @onready var video = $SubViewport/VideoStreamPlayer
+@onready var main = $".."
 
 var slacking = false
 const CODING = "res://Assets/Monitor/output.ogv"
@@ -17,12 +18,14 @@ func switch():
 	slacking = !slacking
 	if slacking:
 		video.stream = load(SLACK)
+		Global.health_multiplier = 3.0
 		video.speed_scale = 3.0
 		video.volume_db = -20
 		video.paused = false
 		video.play()
 	else:
 		video.stream = load(CODING)
+		Global.health_multiplier = 1.0
 		video.speed_scale = 10.0
 		video.play()
 		await get_tree().create_timer(0.1).timeout
@@ -32,4 +35,8 @@ func scroll():
 	video.paused = false
 
 func stop_scroll():
+	video.paused = true
+
+
+func _on_main_gameover():
 	video.paused = true

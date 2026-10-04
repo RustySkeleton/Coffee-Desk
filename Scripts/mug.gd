@@ -2,6 +2,8 @@ extends Node3D
 @onready var coffee_cup = $"Hand/Coffee Cup"
 @onready var animation_player = $Hand/AnimationPlayer
 @onready var area_3d = $"Hand/Coffee Cup/Area3D"
+@export var monitor: Node3D
+@export var sip_timer: Timer
 var i = 1
 var mug_picked:bool = false
 var sip:bool = false
@@ -33,6 +35,8 @@ func _process(delta):
 		sip = true
 		animation_player.play("Coffee_Sip")
 		sipping.play()
+		if sip_timer:
+			sip_timer.start()
 	if Input.is_action_just_released("Left Click") and mug_picked:
 		sip = false
 		animation_player.play_section("Coffee_Sip_Stop", 1.0 - animation_player.current_animation_position)
@@ -49,4 +53,3 @@ func _on_animation_player_animation_finished(anim_name):
 	elif anim_name == "Coffee_Keep":
 		place.play()
 		mug_picked = false
-	

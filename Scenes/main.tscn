@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://053nvxmd4x7" path="res://Scenes/sticky_not.tscn" id="2_6bp64"]
 [ext_resource type="PackedScene" uid="uid://mt081t7m7byv" path="res://Scenes/monitor.tscn" id="2_21xkr"]
 [ext_resource type="PackedScene" uid="uid://c4lumrbssvi2m" path="res://Scenes/sticky_rules.tscn" id="2_344ge"]
+[ext_resource type="PackedScene" uid="uid://0y1v1452f0nm" path="res://Scenes/alottaeyes.tscn" id="2_fevyy"]
 [ext_resource type="PackedScene" uid="uid://cj7pcr7qjt21a" path="res://Scenes/mouse.tscn" id="3_6bp64"]
 [ext_resource type="PackedScene" uid="uid://cfdyuudav1aeh" path="res://Scenes/mug.tscn" id="4_344ge"]
 [ext_resource type="PackedScene" uid="uid://r1ktqufqlbc3" path="res://Scenes/table.tscn" id="5_ynf5e"]
@@ -14,8 +15,11 @@
 [ext_resource type="PackedScene" uid="uid://ctlghxce7xbge" path="res://Scenes/script.tscn" id="12_6iyac"]
 [ext_resource type="AudioStream" uid="uid://cyd6d6lfca51k" path="res://Assets/Miscellaneous/wooden footsteps.mp3" id="13_fdnlq"]
 [ext_resource type="AudioStream" uid="uid://c6rcji8yy1nsk" path="res://Assets/Miscellaneous/horror jumpscare.mp3" id="13_jkdf5"]
+[ext_resource type="AudioStream" uid="uid://cqir3fqpiq5ui" path="res://Assets/Miscellaneous/freesound_community-clap-100659.mp3" id="15_b3802"]
 [ext_resource type="Script" uid="uid://cnnns768pv3mn" path="res://Scripts/health_bar.gd" id="15_k12tt"]
-[ext_resource type="Script" uid="uid://b8gny5mg31kuk" path="res://Scenes/Work_Bar.gd" id="16_h1bgf"]
+[ext_resource type="Script" uid="uid://b8gny5mg31kuk" path="res://Scripts/Work_Bar.gd" id="16_h1bgf"]
+[ext_resource type="Script" uid="uid://b0p8qmut8s0qo" path="res://Scripts/black.gd" id="17_h1bgf"]
+[ext_resource type="FontFile" uid="uid://8fngvli10jjc" path="res://Assets/Miscellaneous/WONDERLAND.OTF" id="18_hibaj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kry3j"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -35,10 +39,56 @@ glow_bloom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1bgf"]
 bg_color = Color(0.36476776, 0.6871313, 0.37322727, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 12
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdsj5"]
+bg_color = Color(1, 1, 1, 0.1254902)
+corner_radius_top_left = 12
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee4r6"]
+bg_color = Color(0.23252714, 0.64693195, 0.8416446, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 12
 
 [node name="Main" type="Node3D" unique_id=147545468]
 script = ExtResource("1_21xkr")
-appearance = Array[int]([35, 96, 144, 210, 279])
+alottaeyes = ExtResource("2_fevyy")
+appearance = Array[int]([35, 96, 144, 210, 279, 315])
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=363062485]
+visible = false
+script = ExtResource("17_h1bgf")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2" unique_id=1515766029]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
 
 [node name="Sticky Rules" parent="." unique_id=1513867889 instance=ExtResource("2_344ge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.020874798)
@@ -53,15 +103,19 @@ environment = SubResource("Environment_6bp64")
 [node name="Mouse" parent="." unique_id=1303800948 instance=ExtResource("3_6bp64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07007134)
 
-[node name="Mug" parent="." unique_id=1403368338 instance=ExtResource("4_344ge")]
+[node name="Mug" parent="." unique_id=1403368338 node_paths=PackedStringArray("monitor", "sip_timer") instance=ExtResource("4_344ge")]
+monitor = NodePath("../Monitor")
+sip_timer = NodePath("../SipTimer")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=696039675]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0.15, 1.235, 0.78)
 current = true
 fov = 50.0
 
-[node name="Keyboard" parent="." unique_id=1187240259 instance=ExtResource("1_kry3j")]
+[node name="Keyboard" parent="." unique_id=1187240259 node_paths=PackedStringArray("health_bar", "work_bar") instance=ExtResource("1_kry3j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07619774)
+health_bar = NodePath("../CanvasLayer/HealthBar")
+work_bar = NodePath("../CanvasLayer/WorkBar")
 
 [node name="Table" parent="." unique_id=340299523 instance=ExtResource("5_ynf5e")]
 
@@ -76,19 +130,35 @@ spot_angle = 16.471004
 
 [node name="Vase" parent="." unique_id=1259258605 instance=ExtResource("9_ynf5e")]
 
-[node name="Clock" parent="." unique_id=370879867 instance=ExtResource("10_hptm8")]
+[node name="Clock" parent="." unique_id=370879867 node_paths=PackedStringArray("main") instance=ExtResource("10_hptm8")]
+main = NodePath("..")
 
 [node name="Eye2" parent="." unique_id=1250363207 instance=ExtResource("11_d1ilt")]
 
 [node name="Scripts" parent="." unique_id=920674936 instance=ExtResource("12_6iyac")]
 visible = false
+say = Array[String](["Your Shift Ends At 6:00", "Your Coworker Must Have Left You A Note", "Start Working, I'll Be Watching You!"])
 
 [node name="Scripts2" parent="." unique_id=183502027 instance=ExtResource("12_6iyac")]
+layer = 2
 visible = false
 say = Array[String](["I Am Watching You!"])
 
+[node name="Scripts3" parent="." unique_id=1836244935 instance=ExtResource("12_6iyac")]
+layer = 3
+visible = false
+say = Array[String](["HOW DARE YOU SLACK!"])
+
+[node name="Scripts4" parent="." unique_id=192083807 instance=ExtResource("12_6iyac")]
+layer = 3
+visible = false
+say = Array[String](["You Are A Good Employee!", "You May Leave!"])
+
 [node name="Stinger" type="AudioStreamPlayer3D" parent="." unique_id=121158298]
 stream = ExtResource("13_jkdf5")
+
+[node name="Clap" type="AudioStreamPlayer3D" parent="." unique_id=682928302]
+stream = ExtResource("15_b3802")
 
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="." unique_id=621470540]
 stream = ExtResource("13_fdnlq")
@@ -100,11 +170,13 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 50.0
-offset_top = 92.15997
+offset_top = 110.0
 offset_right = 550.0
-offset_bottom = 119.15997
+offset_bottom = 137.0
 grow_vertical = 2
 rotation = -1.5707964
+theme_override_fonts/font = ExtResource("18_hibaj")
+theme_override_font_sizes/font_size = 32
 theme_override_styles/background = SubResource("StyleBoxEmpty_k12tt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_h1bgf")
 script = ExtResource("15_k12tt")
@@ -113,6 +185,8 @@ script = ExtResource("15_k12tt")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("18_hibaj")
+theme_override_font_sizes/font_size = 32
 text = "Awake"
 
 [node name="WorkBar" type="ProgressBar" parent="CanvasLayer" unique_id=1745243269]
@@ -122,17 +196,36 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -54.0
-offset_top = 84.0
+offset_top = 110.0
 offset_right = 446.0
-offset_bottom = 111.0
+offset_bottom = 137.0
 grow_horizontal = 0
 grow_vertical = 2
 rotation = -1.5707964
+theme_override_fonts/font = ExtResource("18_hibaj")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/background = SubResource("StyleBoxFlat_pdsj5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ee4r6")
 script = ExtResource("16_h1bgf")
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="CanvasLayer/WorkBar" unique_id=294365204]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 9.5
+offset_top = 4.0000005
+offset_right = 70.5
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("18_hibaj")
+theme_override_font_sizes/font_size = 32
 text = "Work"
+
+[node name="SipTimer" type="Timer" parent="." unique_id=1700325028]
+one_shot = true
+
+[node name="AwakeTimer" type="Timer" parent="." unique_id=2007798026]
+wait_time = 6.0
+autostart = true
+
+[connection signal="gameover" from="." to="Monitor" method="_on_main_gameover"]
+[connection signal="timeout" from="SipTimer" to="." method="_on_sip_timer_timeout"]
+[connection signal="timeout" from="AwakeTimer" to="." method="_on_awake_timer_timeout"]
