@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://c2kxg5nfwpdeq"]
+
+[ext_resource type="Script" uid="uid://m8cc20sslbu0" path="res://Scripts/mainmenu.gd" id="1_hu3kb"]
+[ext_resource type="PackedScene" uid="uid://c4lumrbssvi2m" path="res://Scenes/sticky_rules.tscn" id="2_8wkh3"]
+[ext_resource type="PackedScene" uid="uid://053nvxmd4x7" path="res://Scenes/sticky_not.tscn" id="3_m56cs"]
+[ext_resource type="PackedScene" uid="uid://mt081t7m7byv" path="res://Scenes/monitor.tscn" id="4_5kvh0"]
+[ext_resource type="PackedScene" uid="uid://cj7pcr7qjt21a" path="res://Scenes/mouse.tscn" id="5_l1qm6"]
+[ext_resource type="PackedScene" uid="uid://cfdyuudav1aeh" path="res://Scenes/mug.tscn" id="6_bktvt"]
+[ext_resource type="PackedScene" uid="uid://tfxxb5u5f1yn" path="res://Scenes/keyboard.tscn" id="7_1nkd0"]
+[ext_resource type="PackedScene" uid="uid://r1ktqufqlbc3" path="res://Scenes/table.tscn" id="8_l1owj"]
+[ext_resource type="PackedScene" uid="uid://v3mqliwqy5yw" path="res://Scenes/vase.tscn" id="9_220hi"]
+[ext_resource type="PackedScene" uid="uid://dkyupobhfhf6b" path="res://Scenes/clock.tscn" id="10_qacki"]
+[ext_resource type="PackedScene" uid="uid://ya1ytxbxq15u" path="res://Scenes/eye.tscn" id="11_npf8s"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kry3j"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_21xkr"]
+sky_material = SubResource("ProceduralSkyMaterial_kry3j")
+
+[sub_resource type="Environment" id="Environment_6bp64"]
+background_mode = 1
+background_energy_multiplier = 0.1
+sky = SubResource("Sky_21xkr")
+glow_enabled = true
+glow_bloom = 1.0
+
+[node name="Main" type="Node3D" unique_id=147545468]
+script = ExtResource("1_hu3kb")
+appearance = Array[int]([35, 96, 144, 210, 279])
+
+[node name="Sticky Rules" parent="." unique_id=1513867889 instance=ExtResource("2_8wkh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.020874798)
+
+[node name="Sticky Not" parent="." unique_id=471799019 instance=ExtResource("3_m56cs")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1128438875]
+environment = SubResource("Environment_6bp64")
+
+[node name="Monitor" parent="." unique_id=1533482237 instance=ExtResource("4_5kvh0")]
+
+[node name="Mouse" parent="." unique_id=1303800948 instance=ExtResource("5_l1qm6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07007134)
+
+[node name="Mug" parent="." unique_id=1403368338 instance=ExtResource("6_bktvt")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=696039675]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0.15, 1.235, 0.78)
+current = true
+fov = 50.0
+
+[node name="Keyboard" parent="." unique_id=1187240259 instance=ExtResource("7_1nkd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07619774)
+
+[node name="Table" parent="." unique_id=340299523 instance=ExtResource("8_l1owj")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=955362166]
+transform = Transform3D(0.99904823, 0.037775498, -0.021809692, 0, 0.49999997, 0.86602545, 0.043619387, -0.8652012, 0.4995241, 0, 4, 2.5)
+light_color = Color(0.83137256, 1, 0.9098039, 1)
+light_energy = 7.0
+light_indirect_energy = 5.0
+shadow_enabled = true
+spot_range = 4.346217
+spot_angle = 16.471004
+
+[node name="Vase" parent="." unique_id=1259258605 instance=ExtResource("9_220hi")]
+
+[node name="Clock" parent="." unique_id=370879867 instance=ExtResource("10_qacki")]
+
+[node name="Eye2" parent="." unique_id=1250363207 instance=ExtResource("11_npf8s")]

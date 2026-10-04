@@ -23,12 +23,23 @@ func eye_come():
 	else:
 		eye.position = DEFAULT_POSITION
 	animation_player.play(COME_ANIMS[i])
+	await animation_player.animation_finished
 	under_observation = true
 	whispers.play()
+func eye_come_main_menu():
+	random_number()
+	if i == 2:
+		eye.position = TOP_POSITION
+	else:
+		eye.position = DEFAULT_POSITION
+	animation_player.play(COME_ANIMS[i])
+	await animation_player.animation_finished
+	await get_tree().create_timer(1.0).timeout
+	eye_go()
+	
 func eye_go():
 	animation_player.play(GO_ANIMS[i])
-	under_observation = false
 	whispers.playing = false
-
+	under_observation = false
 func start_the_timer():
 	timer.start()

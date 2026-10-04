@@ -2,11 +2,14 @@ extends Node3D
 @onready var label = $SubViewport/Label
 @onready var tick = $tick
 var clock_time = 0
+@export var main: Node3D
+
 func _process(delta):
-	if clock_time>0:
-		if !tick.playing:
-			tick.volume_db = -25.0
-			tick.play()
+	if !main.over:
+		if clock_time>0:
+			if !tick.playing:
+				tick.volume_db = -25.0
+				tick.play()
 
 
 func update_clock(time):
